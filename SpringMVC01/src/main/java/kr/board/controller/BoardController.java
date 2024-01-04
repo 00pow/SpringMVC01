@@ -22,7 +22,7 @@ public class BoardController {
 		vo.setTitle("게시판실습");
 		vo.setContent("게시판실습");
 		vo.setWriter("김서영");
-		vo.setIndate("2024-01-03");
+		vo.setIndate("2024-01-04");
 		vo.setCount(0);
 		
 		List<Board> list = new ArrayList<Board>();
