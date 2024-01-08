@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,11 +29,11 @@ public class BoardController {
 		model.addAttribute("list", list);
 		return "boardList"; // /WEB-INF/views/boardList.jsp -> forward
 	}
-	@GetMapping("/boardForm.do")
+	@GetMapping("/boardForm.do") // get : 서버의 리소스를 조회
 	public String boardForm() {
 		return "boardForm"; // /WEB-INF/views/boardForm.jsp -> forward
 	}
-	@PostMapping("/boardInsert.do")
+	@PostMapping("/boardInsert.do") //post : 서버에 리소스를 등록(저장)
 	public String boardInsert(Board vo) { // title, content, writer => 파라메터수집(Board)
 		mapper.boardInsert(vo); // 등록
 		return "redirect:/boardList.do"; // redirect
@@ -43,5 +44,21 @@ public class BoardController {
 		model.addAttribute("vo", vo); // ${vo.idx}...
 		return "boardContent"; // /WEB-INF/views/boardContent.jsp
 	}
+	@GetMapping("/boardDelete.do/{idx}")
+	public String boardDelete(@PathVariable("idx") int idx) { // ?idx=6
+		mapper.boardDelete(idx); // 삭제
+		return "redirect:/boardList.do";
+	}
+	@GetMapping("/boardUpdateForm.do/{idx}")
+	public String boardUpdateForm(@PathVariable("idx") int idx, Model model) {
+		Board vo = mapper.boardContent(idx);
+		model.addAttribute("vo", vo); // ${vo.idx}...
+		return "boardUpdate";	// boardUpdate.jsp
+	}
 	
+	@PostMapping("boardUpdate.do")
+	public String boardUpdate(Board vo) {	// idx, title, content
+		mapper.boardUpdate(vo); // 수정
+		return "redirect:/boardList.do";
+	}
 }
