@@ -18,26 +18,27 @@
   <div class="panel panel-default">
     <div class="panel-heading">BOARD</div>
     <div class="panel-body">
-    	<table class="table table-bordered table-hover">
+     <form action="boardInsert.do" method="post">
+    	<table class="table">
     		<tr>
-    			<td>번호</td>
     			<td>제목</td>
-    			<td>작성자</td>
-    			<td>작성일</td>
-    			<td>조회수</td>
+    			<td><input type="text" name="title" class="form-control"/></td>
     		</tr>
-    		<c:forEach var="vo" items="${list }">
     		<tr>
-    			<td>${vo.idx }</td>
-    			<td>${vo.title }</td>
-    			<td>${vo.writer }</td>
-    			<td>${vo.indate }</td>
-    			<td>${vo.count }</td>
+    			<td>내용</td>
+    			<td><textarea rows="7" class="form-control" name="content"></textarea></td>
     		</tr>
-    		
-    		</c:forEach>
+    		<tr>
+    			<td>작성자</td>
+    			<td><input type="text" name="writer" class="form-control"/></td>
+    		</tr>
+    		<tr>
+    			<td colspan="2" align="center">
+    				<button type="submit" class="btn btn-success btn-sm">등록</button>
+    				<button type="reset" class="btn btn-warning btn-sm">취소</button>
+    			</td>
     	</table>
-    	<a href="boardForm.do" class="btn btn-primary btn-sm"  >글쓰기</a>
+    	</form>
     </div>
     <div class="panel-footer">인프런_스프1탄_김서영</div>
   </div>

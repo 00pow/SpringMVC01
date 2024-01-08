@@ -11,9 +11,9 @@ insert into myboard(title,content,writer)
 values('게시판 연습','게시판 연습','관리자');
 
 insert into myboard(title,content,writer)
-values('게시판 연습','게시판 연습','박매일');
+values('게시판 연습','게시판 연습','김서영');
 
 insert into myboard(title,content,writer)
-values('게시판 연습','게시판 연습','선생님');
+values('게시판 연습','게시판 연습','김뭉실');
 
 select * from myboard order by idx desc;
